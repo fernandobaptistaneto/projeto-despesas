@@ -1,6 +1,5 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
-import { Entitie } from './Entitie'
 
 @Entity('public.user')
 export class User {

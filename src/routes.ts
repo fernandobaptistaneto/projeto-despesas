@@ -1,12 +1,11 @@
 import { Router } from 'express'
-import UserController from './controllers/UserController'
+import AuthController from './controllers/AuthController'
 import EntityController from './controllers/EntityController'
 
 const routes = Router()
 
 
-routes.post('/addUser', UserController.createUser)
-routes.post('/addEntity', EntityController.createEntity)
-
+AuthController.setRoutes(routes)
+EntityController.setRoutes(routes)
 
 export default routes

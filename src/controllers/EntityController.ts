@@ -1,21 +1,23 @@
-import { Request, Response } from "express";
-import  dataSource  from "../data-source";
-import { Entitie } from '../entities/Entitie'
+import { Request, Response, Router } from "express";
 
 export class EntityController {
 
-    async createEntity(req: Request, res: Response) {
-
-        const dados = req.body
+    setRoutes (routes: Router) {
+        routes.get('/dadosFamily', this.dadosUser)
+    }
+    
+    async dadosUser(req: Request, res: Response) {
         try {
-            
-            const entityRepository = dataSource.getRepository(Entitie)
-            const entitie = entityRepository.create(dados)
-            entityRepository.save(entitie)
-            return res.status(200).json({message: 'Entidade cadastrado com sucesso.'})
-
+            const dados = [
+                { nome: 'Fernando Baptista', cargo: 'Pai'},
+                { nome: 'Débita', cargo: 'Amor'},
+                { nome: 'João', cargo: 'Filho'},
+                { nome: 'Leonardo', cargo: 'Filho'},
+                { nome: 'Ivoneidy', cargo: 'Mãe'},
+            ]
+            return res.status(200).json(dados)
         } catch (error) {
-            return res.status(500).json({message: 'Error: ', error})
+            return res.status(500).json({ message: 'Error: ' , error})
         }
     }
 
